@@ -8,8 +8,8 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: security_users
-      MYSQL_USER: laravel_user
-      MYSQL_PASSWORD: StrongPassword123!
+      MYSQL_USER: appuser
+      MYSQL_PASSWORD: app123
     ports:
       - "3306:3306"
     volumes:

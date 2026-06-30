@@ -1,10 +1,11 @@
-package securitydemo.repository;
-
+package securitydemo.service;
 
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+
+import securitydemo.repository.UserRepository;
 
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
