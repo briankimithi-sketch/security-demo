@@ -15,7 +15,7 @@ import java.util.Collection;
 import java.util.List;
 
 @Entity
-@Table(name = "CUSTOM_USER")
+@Table(name = "custom_user")
 public class CustomUser implements UserDetails {
 
     @Id

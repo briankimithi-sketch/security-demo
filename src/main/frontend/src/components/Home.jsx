@@ -1,19 +1,23 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import axios from 'axios'
+import api from '../api/axios'
 
 export default function Home() {
   const [username, setUsername] = useState('')
   const navigate = useNavigate()
 
   useEffect(() => {
-    axios.get('/api/user', { withCredentials: true }).then(res => {
-      setUsername(res.data.username)
+    api.get('/api/user').then(res => {
+      if (res.data.authenticated === 'false') {
+        navigate('/login')
+      } else {
+        setUsername(res.data.username)
+      }
     })
-  }, [])
+  }, [navigate])
 
   const handleLogout = async () => {
-    await axios.post('/logout', {}, { withCredentials: true })
+    await api.post('/logout', {})
     navigate('/login')
   }
 

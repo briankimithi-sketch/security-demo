@@ -1,2 +1,5 @@
-INSERT IGNORE INTO CUSTOM_USER (username, password, `role`)
-VALUES ('user','$2a$12$4leyAR.ClA1VZo.k7800NObq8ZRd5L13/5CeotFoHCZ1UH1BqClsa', 'USER');
+-- Initial user data
+-- Password is BCrypt encoded 'user'
+INSERT INTO custom_user (username, password, `role`)
+VALUES ('user', '$2a$10$ILLUL3SHPmTkzHelkdkCI.ltUWRjUYNkAwqzbI.R88NvhelPxvAzW', 'USER')
+ON DUPLICATE KEY UPDATE password=VALUES(password), `role`=VALUES(`role`);

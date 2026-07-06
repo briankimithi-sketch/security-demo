@@ -4,15 +4,29 @@ services:
   mysql:
     image: mysql:8.0
     container_name: spring-security-step-by-step-mysql-container
+    restart: always
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: security_users
-      MYSQL_USER: laravel_user
-      MYSQL_PASSWORD: StrongPassword123!
+      MYSQL_USER: appuser
+      MYSQL_PASSWORD: app123
     ports:
       - "3306:3306"
     volumes:
       - mysql_data:/var/lib/mysql
+
+  app:
+    build: .
+    container_name: security-demo-app
+    restart: always
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mysql
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/security_users
+      SPRING_DATASOURCE_USERNAME: appuser
+      SPRING_DATASOURCE_PASSWORD: app123
 
 volumes:
   mysql_data:
